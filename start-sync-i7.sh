@@ -11,10 +11,9 @@ sleep 1
 freechains-host start $DATA &
 sleep 1
 
-for chain in $CHAINS
-do
-    freechains chains join "$chain"
-done
+freechains chains join '#'   'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+freechains chains join '#br' 'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+freechains chains join '@A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
 
 mail()
 {
