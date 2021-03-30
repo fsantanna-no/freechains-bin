@@ -19,23 +19,26 @@ mail()
 {
     FILE=/tmp/mail.tmp
 
-    echo "To: contasospam@gmail.com"        >  $FILE
-    echo "From: contasospam@gmail.com"      >> $FILE
-    echo "Subject: [freechains] $HOST"      >> $FILE
-    echo                                    >> $FILE
-    echo "$HOST"                            >> $FILE
-
-    for chain in $CHAINS
+    while :
     do
-        echo $chain
-        echo "-----------------------"      >> $FILE
-        echo $chain                         >> $FILE
-        freechains chain $chain heads       >> $FILE
-    done
+        echo "To: contasospam@gmail.com"        >  $FILE
+        echo "From: contasospam@gmail.com"      >> $FILE
+        echo "Subject: [freechains] $HOST"      >> $FILE
+        echo                                    >> $FILE
+        echo "$HOST"                            >> $FILE
 
-    ssmtp contasospam@gmail.com < $FILE
-    rm $FILE
-    sleep 12h
+        for chain in $CHAINS
+        do
+            echo $chain
+            echo "-----------------------"      >> $FILE
+            echo $chain                         >> $FILE
+            freechains chain $chain heads       >> $FILE
+        done
+
+        ssmtp contasospam@gmail.com < $FILE
+        rm $FILE
+        sleep 12h
+    done
 }
 
 sync () {
