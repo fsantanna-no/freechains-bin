@@ -1,20 +1,20 @@
 #!/bin/sh
 
-PATH=/usr/local/bin
+BIN=/usr/local/bin
 HOST=I5
 URL="https://www.duckdns.org/update?domains=francisco-santanna&token=846e3b19-bf23-4506-b482-a8f4ce5b0a52&ip="
 DATA=/home/chico/freechains/data/
 PEERS="192.168.1.100 lcc-uerj.duckdns.org"
 CHAINS="# #br @A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431"
 
-$PATH/freechains-host stop
+$BIN/freechains-host stop
 sleep 1
-$PATH/freechains-host start $DATA &
+$BIN/freechains-host start $DATA &
 sleep 1
 
-$PATH/freechains chains join '#'   'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
-$PATH/freechains chains join '#br' 'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
-$PATH/freechains chains join '@A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+$BIN/freechains chains join '#'   'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+$BIN/freechains chains join '#br' 'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+$BIN/freechains chains join '@A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
 
 mail()
 {
@@ -33,7 +33,7 @@ mail()
             echo $chain
             echo "-----------------------"      >> $FILE
             echo $chain                         >> $FILE
-            $PATH/freechains chain $chain heads >> $FILE
+            $BIN/freechains chain $chain heads  >> $FILE
         done
 
         ssmtp contasospam@gmail.com < $FILE
@@ -54,8 +54,8 @@ sync () {
             for peer in $PEERS
             do
                 echo "$peer $chain"
-                $PATH/freechains peer "$peer" send "$chain"
-                $PATH/freechains peer "$peer" recv "$chain"
+                $BIN/freechains peer "$peer" send "$chain"
+                $BIN/freechains peer "$peer" recv "$chain"
             done
         done
 
