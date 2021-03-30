@@ -1,7 +1,9 @@
 - Execute on startup:
 
 ```
-$ ./start-sync.sh &
+$ ./start-sync-XX.sh &      # manually
+$ crontab -e                # automatically
+@reboot /XXX/freechains/bin/start-sync-XX.sh
 ```
 
 - Execute once:
