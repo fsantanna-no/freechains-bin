@@ -36,7 +36,7 @@ mail()
             $BIN/freechains chain $chain heads  >> $FILE
         done
 
-        ssmtp contasospam@gmail.com < $FILE
+        /usr/sbin/ssmtp contasospam@gmail.com < $FILE
         rm $FILE
         sleep 12h
     done
