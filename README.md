@@ -1,3 +1,9 @@
+- Install additional packages:
+
+```
+$ sudo apt install ssmtp
+```
+
 - Execute on startup:
 
 ```
