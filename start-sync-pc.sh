@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# crontab -e
+# @reboot /home/pi/freechains/bin/start-sync-pc.sh
+
 BIN=/usr/local/bin
 HOST=PC
 URL="https://www.duckdns.org/update?domains=francisco-santanna&token=846e3b19-bf23-4506-b482-a8f4ce5b0a52&ip="
@@ -7,10 +10,12 @@ DATA=/x/freechains/data/
 PEERS="192.168.1.3 192.168.1.4 lcc-uerj.duckdns.org"
 CHAINS="# #br @A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431"
 
+sleep 60
+
 $BIN/freechains-host stop
 sleep 1
 $BIN/freechains-host start $DATA &
-sleep 1
+sleep 5
 
 $BIN/freechains chains join '#'   'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
 $BIN/freechains chains join '#br' 'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
@@ -36,6 +41,13 @@ mail()
             $BIN/freechains chain $chain heads  >> $FILE
         done
 
+        # SSMTP: /etc/ssmtp/ssmtp.conf
+        #root=contasospam@gmail.com
+        #mailhub=smtp.gmail.com:465
+        #FromLineOverride=YES
+        #AuthUser=contasospam@gmail.com
+        #AuthPass=<...>
+        #UseTLS=YES
         /usr/sbin/ssmtp contasospam@gmail.com < $FILE
         rm $FILE
         sleep 12h
