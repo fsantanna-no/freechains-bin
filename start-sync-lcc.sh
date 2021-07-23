@@ -27,8 +27,8 @@ mail()
 
     while :
     do
-        echo "To: contasospam@gmail.com"        >  $FILE
-        echo "From: contasospam@gmail.com"      >> $FILE
+        echo "To: freechains.logs@gmail.com"    >  $FILE
+        echo "From: freechains.logs@gmail.com"  >> $FILE
         echo "Subject: [freechains] $HOST"      >> $FILE
         echo                                    >> $FILE
         echo "$HOST"                            >> $FILE
@@ -42,13 +42,13 @@ mail()
         done
 
         # SSMTP: /etc/ssmtp/ssmtp.conf
-        #root=contasospam@gmail.com
+        #root=freechains.logs@gmail.com
         #mailhub=smtp.gmail.com:465
         #FromLineOverride=YES
-        #AuthUser=contasospam@gmail.com
+        #AuthUser=freechains.logs@gmail.com
         #AuthPass=<...>
         #UseTLS=YES
-        /usr/local/sbin/ssmtp contasospam@gmail.com < $FILE
+        /usr/local/sbin/ssmtp freechains.logs@gmail.com < $FILE
         rm $FILE
         sleep 12h
     done

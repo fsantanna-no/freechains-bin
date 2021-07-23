@@ -22,8 +22,8 @@ mail()
 
     while :
     do
-        echo "To: contasospam@gmail.com"        >  $FILE
-        echo "From: contasospam@gmail.com"      >> $FILE
+        echo "To: freechains.logs@gmail.com"    >  $FILE
+        echo "From: freechains.logs@gmail.com"  >> $FILE
         echo "Subject: [freechains] $HOST"      >> $FILE
         echo                                    >> $FILE
         echo "$HOST"                            >> $FILE
@@ -36,7 +36,7 @@ mail()
             $BIN/freechains chain $chain heads  >> $FILE
         done
 
-        /usr/sbin/ssmtp contasospam@gmail.com < $FILE
+        /usr/sbin/ssmtp freechains.logs@gmail.com < $FILE
         rm $FILE
         sleep 12h
     done
