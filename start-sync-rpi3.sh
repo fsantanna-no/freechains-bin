@@ -42,13 +42,8 @@ mail()
         done
 
         # SSMTP: /etc/ssmtp/ssmtp.conf
-        #root=freechains.logs@gmail.com
-        #mailhub=smtp.gmail.com:465
-        #FromLineOverride=YES
-        #AuthUser=freechains.logs@gmail.com
-        #AuthPass=<...>
-        #UseTLS=YES
-        /usr/sbin/ssmtp freechains.logs@gmail.com < $FILE
+        # MSMTP: /etc/msmtprc
+        /usr/bin/msmtp freechains.logs@gmail.com < $FILE
         rm $FILE
         sleep 12h
     done
