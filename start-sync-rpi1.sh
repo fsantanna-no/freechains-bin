@@ -8,7 +8,8 @@ HOST=RPI1
 URL="https://www.duckdns.org/update?domains=francisco-santanna&token=846e3b19-bf23-4506-b482-a8f4ce5b0a52&ip="
 DATA=/home/pi/freechains/data/
 PEERS="192.168.1.4 192.168.1.5 lcc-uerj.duckdns.org"
-CHAINS="# #br @A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431"
+CHAINS="#test # #br @A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431"
+TST=<KEY>
 
 sleep 60
 
@@ -17,8 +18,9 @@ sleep 1
 $BIN/freechains-host start $DATA &
 sleep 5
 
-$BIN/freechains chains join '#'   'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
-$BIN/freechains chains join '#br' 'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+$BIN/freechains chains join '#test' 'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
+$BIN/freechains chains join '#'     'B807345AB466A31637A790BEDB8C607BAE4E8F6D01FBBD72679C0B0068831E0B'
+$BIN/freechains chains join '#br'   'A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
 $BIN/freechains chains join '@A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431'
 
 mail()
@@ -71,6 +73,15 @@ sync () {
     done
 }
 
+xtest () {
+    while :
+    do
+        date | $BIN/freechains chain '#test' - --sign=$TST
+        sleep 24h
+    done
+}
+
 mail &
 sync &
+xtest &
 wait
