@@ -76,8 +76,8 @@ sync () {
 xtest () {
     while :
     do
-        date | $BIN/freechains chain '#test' - --sign=$TST
         sleep 24h
+        date | $BIN/freechains chain '#test' post - --sign=$TST
     done
 }
 
