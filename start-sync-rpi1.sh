@@ -7,7 +7,7 @@ BIN=/usr/local/bin
 HOST=RPI1
 URL="https://www.duckdns.org/update?domains=francisco-santanna&token=846e3b19-bf23-4506-b482-a8f4ce5b0a52&ip="
 DATA=/home/pi/freechains/data/
-PEERS="192.168.1.4 192.168.1.5 lcc-uerj.duckdns.org"
+PEERS="192.168.0.4 192.168.0.5 lcc-uerj.duckdns.org"
 CHAINS="#test # #br @A2885F4570903EF5EBA941F3497B08EB9FA9A03B4284D9B27FF3E332BA7B6431"
 TST=<KEY>
 
